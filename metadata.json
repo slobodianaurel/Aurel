@@ -1,0 +1,6 @@
+{
+  "name": "FinPulse & WorkLog — Фінансовий та робочий дашборд",
+  "description": "Веб-дашборд для управління особистими фінансами, контролю бюджетів за категоріями, підрахунку робочих годин та синхронізації з Google Sheets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

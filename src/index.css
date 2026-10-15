@@ -1,0 +1,494 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #f1f5f9;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.5) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(224, 231, 255, 0.45) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(241, 245, 249, 0.9) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html.dark body {
+    background-color: #0c101c !important;
+    background-image: none !important;
+    color: #f1f5f9;
+  }
+}
+
+/* ============================================================ */
+/* LIQUID FROSTED GLASS FOR LIGHT THEME ("В світлу тему також добав скла") */
+/* ============================================================ */
+
+/* Global Liquid Glass Base for Light Theme Containers */
+:root:not(.dark) .bg-white,
+:root:not(.dark) [class*="bg-white"] {
+  background-color: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+:root:not(.dark) .bg-slate-50,
+:root:not(.dark) [class*="bg-slate-50"],
+:root:not(.dark) [class*="bg-[#f8fafc]"] {
+  background-color: rgba(248, 250, 252, 0.65) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Frosted glass borders, specular highlights & soft depth for light theme cards */
+:root:not(.dark) .rounded-xl.border,
+:root:not(.dark) .rounded-lg.border,
+:root:not(.dark) .rounded-2xl.border,
+:root:not(.dark) div.border {
+  border-color: rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 6px 24px -2px rgba(15, 23, 42, 0.04), 
+              0 2px 8px -1px rgba(15, 23, 42, 0.02),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.85) !important;
+  transition: background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.18s ease !important;
+}
+
+/* Light Theme hover effect - smooth lightening & elevation */
+:root:not(.dark) .hover\:bg-slate-50:hover,
+:root:not(.dark) .hover\:bg-slate-100:hover,
+:root:not(.dark) .cursor-pointer:hover {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+}
+
+:root:not(.dark) .rounded-xl.border:hover,
+:root:not(.dark) .rounded-lg.border:hover,
+:root:not(.dark) .rounded-2xl.border:hover,
+:root:not(.dark) div.border.cursor-pointer:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.95) !important;
+  box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 
+              0 4px 12px -2px rgba(15, 23, 42, 0.03),
+              inset 0 1px 2px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Frosted glass for inputs in light mode */
+:root:not(.dark) input:not([type="checkbox"]):not([type="radio"]),
+:root:not(.dark) select,
+:root:not(.dark) textarea {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+  transition: all 0.2s ease !important;
+}
+
+:root:not(.dark) input:not([type="checkbox"]):not([type="radio"]):focus,
+:root:not(.dark) select:focus,
+:root:not(.dark) textarea:focus {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* Light theme header and sidebar frosted glass */
+:root:not(.dark) header,
+:root:not(.dark) aside {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-color: rgba(226, 232, 240, 0.85) !important;
+}
+
+/* Light theme dialogs & modals */
+:root:not(.dark) [role="dialog"] > div,
+:root:not(.dark) .fixed .max-w-xl,
+:root:not(.dark) .fixed .max-w-md,
+:root:not(.dark) .fixed .max-w-lg,
+:root:not(.dark) .fixed .max-w-2xl {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.16),
+              inset 0 1px 2px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ============================================================ */
+/* ============================================================ */
+/* LIQUID GLASS DARK MODE THEME (Low contrast, frosted glass, lightening on hover) */
+/* ============================================================ */
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0c101c !important;
+  color: #e2e8f0 !important;
+}
+
+/* Global Liquid Glass Base for All White & Light Containers */
+.dark .bg-white,
+.dark [class*="bg-white"],
+.dark .bg-slate-50,
+.dark [class*="bg-slate-50"],
+.dark [class*="bg-[#f8fafc]"] {
+  background-color: rgba(18, 25, 42, 0.72) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Neutralize bright light pills, patches, and tags ("убери білі пляшки") */
+.dark .bg-slate-100,
+.dark [class*="bg-slate-100"],
+.dark .bg-slate-200,
+.dark [class*="bg-slate-200"],
+.dark .bg-gray-100,
+.dark [class*="bg-gray-100"] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* Colored accent badges into subtle glowing translucent glass */
+.dark .bg-blue-50,
+.dark [class*="bg-blue-50"] {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #93c5fd !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+.dark .bg-emerald-50,
+.dark [class*="bg-emerald-50"],
+.dark .bg-emerald-100,
+.dark [class*="bg-emerald-100"] {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+.dark .bg-amber-50,
+.dark [class*="bg-amber-50"],
+.dark .bg-amber-100,
+.dark [class*="bg-amber-100"] {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+.dark .bg-red-50,
+.dark [class*="bg-red-50"],
+.dark .bg-red-100,
+.dark [class*="bg-red-100"] {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+.dark .bg-indigo-50,
+.dark [class*="bg-indigo-50"],
+.dark .bg-indigo-100,
+.dark [class*="bg-indigo-100"] {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+  color: #c7d2fe !important;
+  border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Clean, thin light borders everywhere ("замість білих плям залиш просто світлі границі") */
+.dark .border,
+.dark [class*="border-slate-"],
+.dark [class*="border-gray-"],
+.dark [class*="border-indigo-"],
+.dark [class*="border-blue-"],
+.dark [class*="border-emerald-"],
+.dark [class*="border-red-"],
+.dark [class*="border-amber-"] {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.dark [class*="divide-slate-"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Soft Typography (low-contrast, easy on the eyes) */
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Primary buttons in dark mode */
+.dark .bg-slate-900:not(header):not(aside) {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-slate-900:not(header):not(aside):hover {
+  background-color: rgba(51, 65, 85, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ============================================================ */
+/* ALL CARDS, ITEMS & BUTTONS: Dark with subtle light borders,  */
+/* LIGHTENING ON MOUSE HOVER ("Всюди зроби так, як із гаманцями */
+/* «Ваші гаманці та поточні залишки», типу темні а при наведені */
+/*  мишки трохи світліють")                                     */
+/* ============================================================ */
+
+.dark .rounded-xl.border,
+.dark .rounded-lg.border,
+.dark .rounded-2xl.border,
+.dark button.border,
+.dark a.border,
+.dark div.border {
+  transition: background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.15s ease !important;
+}
+
+/* Hover lightening effect universally across cards, items and interactive rows */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-white:hover,
+.dark .cursor-pointer:hover,
+.dark [class*="cursor-pointer"]:hover {
+  background-color: rgba(255, 255, 255, 0.065) !important;
+}
+
+.dark .rounded-xl.border:hover,
+.dark .rounded-lg.border:hover,
+.dark .rounded-2xl.border:hover,
+.dark button.border:hover,
+.dark div.border.cursor-pointer:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Tables and List Rows */
+.dark table tbody tr {
+  transition: background-color 0.18s ease;
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark thead.bg-slate-50,
+.dark thead,
+.dark [class*="thead"] {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Inputs, Selects, and Textareas */
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark select,
+.dark textarea {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.2s ease;
+}
+
+.dark input:not([type="checkbox"]):not([type="radio"]):hover,
+.dark select:hover,
+.dark textarea:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 1px #3b82f6 !important;
+  background-color: rgba(17, 24, 39, 0.95) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Modals & Dialogs with liquid glass */
+.dark [role="dialog"] > div,
+.dark .fixed .max-w-xl,
+.dark .fixed .max-w-md,
+.dark .fixed .max-w-lg,
+.dark .fixed .max-w-2xl {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Dock & Header with liquid glass */
+.dark aside,
+.dark header {
+  background-color: rgba(13, 18, 29, 0.82) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .shadow-xs,
+.dark .shadow-sm,
+.dark .shadow-2xs {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark .shadow-xl,
+.dark .shadow-2xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.75), 0 8px 10px -6px rgba(0, 0, 0, 0.75) !important;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Remove spinbox steppers from all number inputs globally */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Official Sign in with Google button styles */
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #747775;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 400px;
+  min-width: min-content;
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 10px;
+  min-width: 20px;
+  width: 20px;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  -webkit-transition: opacity .218s;
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:disabled {
+  cursor: default;
+  background-color: #ffffff61;
+  border-color: #1f1f1f1f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-contents {
+  opacity: 38%;
+}
+
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 38%;
+}
+
+.gsi-material-button:not(:disabled):active .gsi-material-button-state,
+.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 12%;
+}
+
+.gsi-material-button:not(:disabled):hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 8%;
+}
